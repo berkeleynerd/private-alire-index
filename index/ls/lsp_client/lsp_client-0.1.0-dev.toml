@@ -1,0 +1,12 @@
+name = "lsp_client"
+description = "GNAT Studio LSP client core (headless)"
+version = "0.1.0-dev"
+project-files = ["lsp_client_lib.gpr"]
+licenses = "GPL-3.0-or-later"
+authors = ["Rebecca"]
+maintainers = ["Rebecca <rebecca@berkeleynerd.com>"]
+maintainers-logins = ["berkeleynerd"]
+
+[origin]
+url = "git+file:/Users/rebecca/src/github.com/berkeleynerd/lsp_client_tmp/export_repos/lsp_client"
+commit = "ce1cf487ee73b898d4a238376898e361734c1efc"

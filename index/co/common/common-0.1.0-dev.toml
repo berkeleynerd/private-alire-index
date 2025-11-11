@@ -1,0 +1,12 @@
+name = "common"
+description = "Headless common utilities for GNAT Studio"
+version = "0.1.0-dev"
+project-files = ["common.gpr"]
+licenses = "GPL-3.0-or-later"
+authors = ["Rebecca"]
+maintainers = ["Rebecca <rebecca@berkeleynerd.com>"]
+maintainers-logins = ["berkeleynerd"]
+
+[origin]
+url = "git+file:/Users/rebecca/src/github.com/berkeleynerd/lsp_client_tmp/export_repos/common"
+commit = "efc81fe39d3a5e167aa511f6f7de5c06eced8902"
