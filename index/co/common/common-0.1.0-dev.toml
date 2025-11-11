@@ -8,5 +8,5 @@ maintainers = ["Rebecca <rebecca@berkeleynerd.com>"]
 maintainers-logins = ["berkeleynerd"]
 
 [origin]
-url = "git+file:/Users/rebecca/src/github.com/berkeleynerd/lsp_client_tmp/export_repos/common"
+url = "git+https://github.com/berkeleynerd/common.git"
 commit = "efc81fe39d3a5e167aa511f6f7de5c06eced8902"
