@@ -1,0 +1,45 @@
+name = "sml"
+description = "Simple XML library for Ada/SPARK"
+version = "0.1.0"
+
+authors = ["Rebecca Wise"]
+maintainers = ["Rebecca Wise <rebecca@berkeleynerd.com>"]
+maintainers-logins = ["berkeleynerd"]
+licenses = "MIT OR Apache-2.0 WITH LLVM-exception"
+website = "https://github.com/berkeleynerd/sml"
+tags = ["xml", "parser", "simple-xml", "spark"]
+project-files = ["sml.gpr"]
+
+
+[build-switches]
+"*".ada_version = "Ada2022"
+"*".runtime_checks = "Overflow"
+"*".style_checks = [
+  "-gnaty3",      # indentation 3
+  "-gnatyM120",   # max width 120
+  "-gnatyB",      # short-circuit bools
+  "-gnatyl",      # layout
+  "-gnatya",      # attribute casing
+  "-gnatyO"       # explicit overriding
+]
+
+[gpr-externals]
+SML_LIBRARY_TYPE = ["static", "relocatable", "static-pic"]
+
+[gpr-set-externals]
+SML_LIBRARY_TYPE = "static"
+
+# Alire test actions: build and run omnibus tests
+[[actions]]
+type = "test"
+name = "build-tests"
+command = ["alr", "exec", "--", "gprbuild", "-p", "-P", "test/test_all.gpr", "-j0"]
+
+[[actions]]
+type = "test"
+name = "run-tests"
+command = ["bin/test_all"]
+
+[origin]
+commit = "f7b1c9d50b291980852b19ef1e4e5dd0d2a2b45a"
+url = "git+https://github.com/berkeleynerd/sml.git"

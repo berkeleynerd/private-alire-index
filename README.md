@@ -2,8 +2,8 @@
 
 This repository is Rebecca's publicly readable, independently maintained
 [Alire](https://alire.ada.dev/) crate index. It follows Alire index format
-`1.4.0` and supplements the official Alire community index with development
-releases used by local projects.
+`1.4.0` and supplements the official Alire community index with locally
+maintained releases.
 
 This index is not submitted to or published through the official Alire
 community index. It is still a public GitHub repository and may be discoverable
@@ -17,8 +17,11 @@ The locally maintained entries currently include:
 | `language=0.1.0-dev` | [`berkeleynerd/language`](https://github.com/berkeleynerd/language) | [`rebecca/language`](https://git.idril.is/rebecca/language) |
 | `lsp_client=0.1.0-dev` | [`berkeleynerd/lsp_client`](https://github.com/berkeleynerd/lsp_client) | [`rebecca/lsp_client`](https://git.idril.is/rebecca/lsp_client) |
 | `shared=0.1.0-dev` | [`berkeleynerd/shared`](https://github.com/berkeleynerd/shared) | [`rebecca/shared`](https://git.idril.is/rebecca/shared) |
+| `sml=0.1.0` | [`berkeleynerd/sml`](https://github.com/berkeleynerd/sml) | [`rebecca/sml`](https://git.idril.is/rebecca/sml) |
+| `sml_io=0.1.0` | [`berkeleynerd/sml_io`](https://github.com/berkeleynerd/sml_io) | [`rebecca/sml_io`](https://git.idril.is/rebecca/sml_io) |
+| `sml_examples=0.1.0` | [`berkeleynerd/sml_examples`](https://github.com/berkeleynerd/sml_examples) | [`rebecca/sml_examples`](https://git.idril.is/rebecca/sml_examples) |
 
-The index and all four source repositories are publicly readable. No GitHub or
+The index and all listed source repositories are publicly readable. No GitHub or
 Gitea authentication is required to fetch them.
 
 ## Configure Alire
@@ -40,13 +43,13 @@ look up a locally maintained crate:
 
 ```sh
 alr index --list
-alr show common=0.1.0-dev
+alr show sml=0.1.0
 ```
 
 To fetch a crate into the current directory:
 
 ```sh
-alr get common=0.1.0-dev
+alr get sml_examples=0.1.0
 ```
 
 ## Maintain the local index
