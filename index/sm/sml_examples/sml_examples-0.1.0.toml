@@ -1,0 +1,54 @@
+name = "sml_examples"
+description = "SML examples and integration demos"
+version = "0.1.0"
+
+authors = ["Rebecca Wise"]
+maintainers = ["Rebecca Wise <rebecca@berkeleynerd.com>"]
+maintainers-logins = ["berkeleynerd"]
+licenses = "MIT OR Apache-2.0 WITH LLVM-exception"
+website = "https://github.com/berkeleynerd/sml_examples"
+tags = ["sml", "examples", "schema", "io"]
+
+executables = ["sml_example", "schema_validation_example", "test_schema_loader"]
+project-files = ["examples.gpr"]
+
+[build-switches]
+"*".ada_version = "Ada2022"
+"*".style_checks = [
+  "-gnaty3",
+  "-gnatyM120",
+  "-gnatyB",
+  "-gnatyl",
+  "-gnatya",
+  "-gnatyO"
+]
+
+[[depends-on]]
+sml = "=0.1.0"
+
+[[depends-on]]
+sml_io = "=0.1.0"
+
+[[actions]]
+type = "test"
+name = "build-examples"
+command = ["alr", "exec", "--", "gprbuild", "-p", "-P", "examples.gpr", "-j0"]
+
+[[actions]]
+type = "test"
+name = "run-sml-example"
+command = ["bin/sml_example"]
+
+[[actions]]
+type = "test"
+name = "run-schema-validation"
+command = ["bin/schema_validation_example"]
+
+[[actions]]
+type = "test"
+name = "run-test-schema-loader"
+command = ["bin/test_schema_loader"]
+
+[origin]
+commit = "d0a008a9f1120bad27c42ada13c70c48546322a1"
+url = "git+https://github.com/berkeleynerd/sml_examples.git"
