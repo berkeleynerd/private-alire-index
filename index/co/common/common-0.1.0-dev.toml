@@ -1,12 +1,43 @@
 name = "common"
-description = "Headless common utilities for GNAT Studio"
+description = "Common core utilities for GNAT Studio (headless)"
 version = "0.1.0-dev"
-project-files = ["common.gpr"]
-licenses = "GPL-3.0-or-later"
-authors = ["Rebecca"]
-maintainers = ["Rebecca <rebecca@berkeleynerd.com>"]
+
+authors = ["AdaCore", "Rebecca"]
+maintainers = ["rebecca@berkeleynerd.com"]
 maintainers-logins = ["berkeleynerd"]
 
+licenses = "GPL-3.0-or-later"
+website = "https://github.com/berkeleynerd/gps_common_core"
+tags = ["ada", "gnatstudio", "core"]
+
+# NOTE: In this monorepo, we point to the root GPR. For a split repo,
+# set to ["common.gpr"] at the crate root and move sources.
+project-files = [
+  "common.gpr",
+]
+
+[[depends-on]]
+shared = "=0.1.0-dev"
+
+[[depends-on]]
+vss = "~25.0"
+
+[[depends-on]]
+xmlada = "~25.0"
+
+[[depends-on]]
+gnatcoll_sqlite = "~25.0"
+
+[[depends-on]]
+gnatcoll_xref = "~25.0"
+
+[gpr-externals]
+BUILD = ["Debug", "Production", "AddressSanitizer", "Coverage"]
+LIBRARY_TYPE = ["static", "relocatable", "static-pic"]
+
+[gpr-set-externals]
+LIBRARY_TYPE = "static"
+
 [origin]
+commit = "f7d12ec684e6bde632dfdddc4fb5e5ea7326f1cb"
 url = "git+https://github.com/berkeleynerd/common.git"
-commit = "efc81fe39d3a5e167aa511f6f7de5c06eced8902"
