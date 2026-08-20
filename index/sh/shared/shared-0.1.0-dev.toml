@@ -1,12 +1,31 @@
 name = "shared"
-description = "Shared GPR with compiler/linker flags"
+description = "Shared build configuration (GPR) for GNAT Studio LSP core"
 version = "0.1.0-dev"
-project-files = ["shared.gpr"]
-licenses = "GPL-3.0-or-later"
-authors = ["Rebecca"]
-maintainers = ["Rebecca <rebecca@berkeleynerd.com>"]
+
+authors = ["AdaCore", "Rebecca"]
+maintainers = ["rebecca@berkeleynerd.com"]
 maintainers-logins = ["berkeleynerd"]
 
+licenses = "GPL-3.0-or-later"
+website = "https://github.com/berkeleynerd/gps_shared"
+tags = ["ada", "gpr", "build"]
+
+# NOTE: In this monorepo, we point to the root GPR. For a split repo,
+# set to ["gnatstudio_shared.gpr"] at the crate root.
+project-files = [
+  "gnatstudio_shared.gpr",
+]
+
+[[depends-on]]
+gnatcoll = "~25.0"
+
+[gpr-externals]
+BUILD = ["Debug", "Production", "AddressSanitizer", "Coverage"]
+LIBRARY_TYPE = ["static", "relocatable", "static-pic"]
+
+[gpr-set-externals]
+LIBRARY_TYPE = "static"
+
 [origin]
+commit = "a01729a06872f61f57b611abab403be68f704ab3"
 url = "git+https://github.com/berkeleynerd/shared.git"
-commit = "1863c713b3460a117e2e113a8a7dc1f8407d11d4"
