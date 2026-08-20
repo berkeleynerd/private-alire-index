@@ -1,55 +1,49 @@
-# Private Alire Index
+# Supplemental Alire Index
 
-This repository is Rebecca's private [Alire](https://alire.ada.dev/) crate
-index. It follows Alire index format `1.4.0` and supplements the public Alire
-community index with development releases used by private projects.
+This repository is Rebecca's publicly readable, privately maintained
+[Alire](https://alire.ada.dev/) crate index. It follows Alire index format
+`1.4.0` and supplements the official Alire community index with development
+releases used by local projects.
 
-The private entries currently include:
+This index is not submitted to or published through the official Alire
+community index. It is still a public GitHub repository and may be discoverable
+through GitHub profiles, search, APIs, and activity.
+
+The locally maintained entries currently include:
 
 - `common=0.1.0-dev`
 - `language=0.1.0-dev`
 - `lsp_client=0.1.0-dev`
 - `shared=0.1.0-dev`
 
-Access to this index does not automatically grant access to a crate's source
-repository. Your Git credentials must be authorized for both this repository
-and every private origin referenced by a crate manifest.
+Reading this index does not require authentication. The source repositories for
+the locally maintained crates are private, however, so fetching those crates
+still requires an authorized GitHub account or deploy key.
 
 ## Configure Alire
 
-### 1. Set up GitHub SSH access
+### Add the supplemental index
 
-Add an SSH key to the GitHub account that has access to this repository, then
-verify authentication:
-
-```sh
-ssh -T git@github.com
-```
-
-GitHub reports that it does not provide shell access even when authentication
-succeeds; that message is expected.
-
-### 2. Add the private index
-
-Give the private index precedence over the community index so private releases
-win if the same crate and version occur in both:
+Give this index precedence over the community index so its releases win if the
+same crate and version occur in both:
 
 ```sh
 alr index \
-  --add=git+ssh://git@github.com/berkeleynerd/private-alire-index.git \
-  --name=private \
+  --add=git+https://github.com/berkeleynerd/private-alire-index.git \
+  --name=berkeleynerd \
   --before=community
 ```
 
 This changes the current user's Alire configuration. Confirm the result and
-look up a private crate:
+look up a locally maintained crate:
 
 ```sh
 alr index --list
 alr show common=0.1.0-dev
 ```
 
-To fetch a crate into the current directory:
+To fetch a crate into the current directory, first ensure your GitHub account
+or deploy key can read that crate's source repository, then run:
 
 ```sh
 alr get common=0.1.0-dev
@@ -72,13 +66,13 @@ alr index --check
 Remove this index from the local Alire configuration:
 
 ```sh
-alr index --del=private
+alr index --del=berkeleynerd
 ```
 
 Adding the index again is safe only after removing an existing entry with the
 same name.
 
-## Add or update a private crate
+## Add or update a locally maintained crate
 
 1. Make sure the source repository is accessible to every intended user and CI
    runner.
@@ -104,15 +98,18 @@ When updating an existing development release, prefer publishing a new version.
 If the version must remain unchanged, update its pinned origin commit and make
 sure all consumers run `alr index --update-all` before resolving dependencies.
 
-## CI and credential safety
+## Private origins, CI, and credential safety
 
-- Prefer a read-only SSH deploy key or a dedicated machine-user key.
-- Populate `known_hosts` from a verified GitHub host key before cloning.
+- The index itself can be cloned anonymously over HTTPS. Credentials are needed
+  only for private crate origins.
+- For a private origin, prefer a read-only SSH deploy key or a dedicated
+  machine-user key.
+- When using SSH, populate `known_hosts` from a verified GitHub host key before
+  cloning.
 - Never put personal access tokens, passwords, or deploy keys in crate
   manifests, repository URLs, workflow files, or Alire settings committed to
   source control.
-- Grant credentials only to this index and the private crate origins required
-  by the build.
+- Grant credentials only to the private crate origins required by the build.
 
 ## Synchronize community metadata
 
