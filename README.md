@@ -1,6 +1,6 @@
 # Supplemental Alire Index
 
-This repository is Rebecca's publicly readable, privately maintained
+This repository is Rebecca's publicly readable, independently maintained
 [Alire](https://alire.ada.dev/) crate index. It follows Alire index format
 `1.4.0` and supplements the official Alire community index with development
 releases used by local projects.
@@ -11,14 +11,15 @@ through GitHub profiles, search, APIs, and activity.
 
 The locally maintained entries currently include:
 
-- `common=0.1.0-dev`
-- `language=0.1.0-dev`
-- `lsp_client=0.1.0-dev`
-- `shared=0.1.0-dev`
+| Crate | GitHub source | Gitea mirror |
+| --- | --- | --- |
+| `common=0.1.0-dev` | [`berkeleynerd/common`](https://github.com/berkeleynerd/common) | [`rebecca/common`](https://git.idril.is/rebecca/common) |
+| `language=0.1.0-dev` | [`berkeleynerd/language`](https://github.com/berkeleynerd/language) | [`rebecca/language`](https://git.idril.is/rebecca/language) |
+| `lsp_client=0.1.0-dev` | [`berkeleynerd/lsp_client`](https://github.com/berkeleynerd/lsp_client) | [`rebecca/lsp_client`](https://git.idril.is/rebecca/lsp_client) |
+| `shared=0.1.0-dev` | [`berkeleynerd/shared`](https://github.com/berkeleynerd/shared) | [`rebecca/shared`](https://git.idril.is/rebecca/shared) |
 
-Reading this index does not require authentication. The source repositories for
-the locally maintained crates are private, however, so fetching those crates
-still requires an authorized GitHub account or deploy key.
+The index and all four source repositories are publicly readable. No GitHub or
+Gitea authentication is required to fetch them.
 
 ## Configure Alire
 
@@ -42,8 +43,7 @@ alr index --list
 alr show common=0.1.0-dev
 ```
 
-To fetch a crate into the current directory, first ensure your GitHub account
-or deploy key can read that crate's source repository, then run:
+To fetch a crate into the current directory:
 
 ```sh
 alr get common=0.1.0-dev
@@ -98,25 +98,24 @@ When updating an existing development release, prefer publishing a new version.
 If the version must remain unchanged, update its pinned origin commit and make
 sure all consumers run `alr index --update-all` before resolving dependencies.
 
-## Private origins, CI, and credential safety
+## CI and credential safety
 
-- The index itself can be cloned anonymously over HTTPS. Credentials are needed
-  only for private crate origins.
-- For a private origin, prefer a read-only SSH deploy key or a dedicated
-  machine-user key.
+- The index and its current crate origins can be cloned anonymously over HTTPS.
+- If a private origin is added later, prefer a read-only SSH deploy key or a
+  dedicated machine-user key.
 - When using SSH, populate `known_hosts` from a verified GitHub host key before
   cloning.
 - Never put personal access tokens, passwords, or deploy keys in crate
   manifests, repository URLs, workflow files, or Alire settings committed to
   source control.
-- Grant credentials only to the private crate origins required by the build.
+- Grant credentials only to private crate origins required by the build.
 
 ## Synchronize community metadata
 
 This repository contains community-index metadata as its base. When refreshing
 that base, merge only a community branch compatible with the version declared
 in [`index/index.toml`](index/index.toml), resolve conflicts without dropping
-the private manifests, and run `alr index --check` before pushing.
+the locally maintained manifests, and run `alr index --check` before pushing.
 
 Upstream Alire documentation is available at
 [alire.ada.dev](https://alire.ada.dev/).
